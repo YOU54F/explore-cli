@@ -87,11 +87,11 @@ jobs:
       - name: test debian ${{ matrix.arch }} package
         if: ${{ matrix.debian == true && matrix.arch == 'amd64' }}
         run: docker run --platform=linux/${{ matrix.arch }} --rm -v $(pwd):/app debian /bin/bash -c 'apt update && apt install -y libicu-dev && chmod +x ./app/artifact/explore-cli-linux-x64 && ./app/artifact/explore-cli-linux-x64 --version'
-      - name: test 'macos-14'
-        if: ${{ matrix.os == 'macos-14' }}
+      - name: test 'macos-14-arm'
+        if: ${{ matrix.os == 'macos-14' && matrix.arch == 'arm64' }}
         run: chmod +x artifact/explore-cli-osx-arm64 && artifact/explore-cli-osx-arm64 --version
-      - name: test 'macos-12'
-        if: ${{ matrix.os == 'macos-12' }}
+      - name: test 'macos-14-amd'
+        if: ${{ matrix.os == 'macos-14' && matrix.arch == 'amd64' }}
         run: chmod +x artifact/explore-cli-osx-x64 && artifact/explore-cli-osx-x64 --version
       - name: test 'windows-latest'
         if: ${{ matrix.os == 'windows-latest' }}
