@@ -114,6 +114,8 @@ jobs:
             versionSpec: '5.x'
         - name: checkout
           uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
         - name: Determine Version
           id: gitVersion
           uses: gittools/actions/gitversion/execute@v0.10.2
